@@ -1,12 +1,7 @@
-/*
-	**³ÌĞòÓÃÓÚÊä³ö¶ş½øÖÆÎÄ¼şµÄÎ»Êı¾İ 
-	**Èí¼şËùÓĞÈ¨¹éFaithBook-_- 
-*/ 
-
 #include<stdio.h>
 #include<windows.h>
 
-char toChar(int i){//½«0-15Ö®¼äµÄÕûÊı´¦Àíºó·µ»ØÊ®Áù½øÖÆ×Ö·û 
+char toChar(int i){//å°†0-15ä¹‹é—´çš„æ•´æ•°å¤„ç†åè¿”å›åå…­è¿›åˆ¶å­—ç¬¦ 
 	if(i<10)
 		return i+'0';
 	else return i+'A'-10;
@@ -15,10 +10,10 @@ char toChar(int i){//½«0-15Ö®¼äµÄÕûÊı´¦Àíºó·µ»ØÊ®Áù½øÖÆ×Ö·û
 int main(){
 	char *filename = (char*)malloc (sizeof(char)*8); 
 	puts("Easy Byte Viewer Powered By FaithBook-_-");
-	puts("\nÇë½«ÎÄ¼şÓë´Ë³ÌĞò·ÅÖÃÓÚÍ¬Ò»Ä¿Â¼ÏÂ");
-	printf("\nÊäÈëÎÄ¼şÈ«Ãû[ÎÄ¼şÃû+À©Õ¹Ãû]:  ");
+	puts("\nè¯·å°†æ–‡ä»¶ä¸æ­¤ç¨‹åºæ”¾ç½®äºåŒä¸€ç›®å½•ä¸‹");
+	printf("\nè¾“å…¥æ–‡ä»¶å…¨å[æ–‡ä»¶å+æ‰©å±•å]:  ");
 	gets(filename);
-	printf("\nÊı¾İ´¦ÀíÖĞ..."); 
+	printf("\næ•°æ®å¤„ç†ä¸­..."); 
 	FILE *fp,*cp;
 	if((fp = fopen(filename,"rb")) == NULL){
 		printf("No Such File!!!\n");
@@ -26,17 +21,17 @@ int main(){
 		return -1;
 	}
 		
-	cp = fopen("·ÖÎö½á¹û.txt","w");
+	cp = fopen("åˆ†æç»“æœ.txt","w");
 	fputs("Easy Byte Viewer Powered By FaithBook-_-\n\n",cp);
 	fputs(filename,cp);
-	fputs(" ·ÖÎö½á¹û£º\n",cp); 
+	fputs(" åˆ†æç»“æœï¼š\n",cp); 
 	
 	long i = 0;
 	int j=0,k,n,str[17];
 	
 	while((k = fgetc(fp) )!= EOF){
 		if(!(i%16)){
-			//ÊäÈë×Ö·û²¢»»ĞĞ
+			//è¾“å…¥å­—ç¬¦å¹¶æ¢è¡Œ
 			if(i){
 				fputs("\t",cp);
 				for(n = 0;n<j;n++){
@@ -46,7 +41,7 @@ int main(){
 				}
 				j = 0;
 			}
-			fputs("\nµÚ[",cp);
+			fputs("\nç¬¬[",cp);
 			
 			fputc((i/16+1)/10000000%10 + '0',cp);
 			fputc((i/16+1)/1000000%10 + '0',cp);
@@ -56,7 +51,7 @@ int main(){
 			fputc((i/16+1)/100%10 + '0',cp);
 			fputc((i/16+1)/10%10 + '0',cp);
 			fputc((i/16+1)%10 + '0',cp);
-			fputs("]ĞĞ  :  ",cp);
+			fputs("]è¡Œ  :  ",cp);
 		}
 		
 		fputc(toChar(k/16),cp); 
@@ -67,7 +62,7 @@ int main(){
 			fputc(' ',cp);
 		i++;
 	}
-	//±£Ö¤×îºóÒ»ĞĞ²»×ãÊ±µÄ¸ñÊ½ 
+	//ä¿è¯æœ€åä¸€è¡Œä¸è¶³æ—¶çš„æ ¼å¼ 
 	for(n = 0;n<16-j;n++){
 		fputs("  ",cp);
 	}
@@ -83,11 +78,11 @@ int main(){
 	
 	fputs("\n\n",cp);
 	fputs(filename,cp);
-	fputs(" ·ÖÎö½á¹û",cp); 
+	fputs(" åˆ†æç»“æœ",cp); 
 	fclose(fp);
 	fclose(cp);
-	printf("\n\nÊı¾İ´¦ÀíÍê³É!!!\n\n´¦ÀíºóµÄÎÄ¼şÒÑ±£´æÎª¡¶·ÖÎö½á¹û.txt¡·\n\n³ÌĞò¼´½«¹Ø±Õ´ËÒ³Ãæ´ò¿ª·ÖÎö½á¹û\n");
+	printf("\n\næ•°æ®å¤„ç†å®Œæˆ!!!\n\nå¤„ç†åçš„æ–‡ä»¶å·²ä¿å­˜ä¸ºã€Šåˆ†æç»“æœ.txtã€‹\n\nç¨‹åºå³å°†å…³é—­æ­¤é¡µé¢æ‰“å¼€åˆ†æç»“æœ\n");
 	Sleep(2000);
-	system("start ·ÖÎö½á¹û.txt");
+	system("start åˆ†æç»“æœ.txt");
 	return 0;
 }
